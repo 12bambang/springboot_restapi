@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class TblUsers implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "sales_name", nullable = false)

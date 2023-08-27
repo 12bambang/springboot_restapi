@@ -8,8 +8,6 @@ import com.boniewijaya2021.springboot.utility.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +58,7 @@ public class SalesService {
 
 
     }
-    public ResponseEntity getPenjualanClassrepo(String namaSales, String namaBarang){
+    public ResponseEntity getPenjualanClassrepo(String namaSales, String namaBarang, Double harga){
         Map<String, Object> result = new HashMap<>();
         MessageModel msg = new MessageModel();
         try {

@@ -30,8 +30,8 @@ public class SampleGet {
 
     }
     @GetMapping("/get/dataPenjualanClass")
-    public ResponseEntity getDataPenjualanDinamic( String namaSales, String namaBarang){
-        ResponseEntity responseEntity = salesService.getPenjualanClassrepo(namaSales, namaBarang);
+    public ResponseEntity getDataPenjualanDinamic( String namaSales, String namaBarang, Double harga){
+        ResponseEntity responseEntity = salesService.getPenjualanClassrepo(namaSales, namaBarang, harga);
         return responseEntity;
     }
 
