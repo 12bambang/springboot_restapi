@@ -14,8 +14,8 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_genz2", schema = "sample")
-public class Tblgenz2 implements Serializable {
+@Table(name = "tbl_socialmedia", schema = "sample")
+public class Tblsocialmedia implements Serializable {
 //    @Id
 //    @Column(name = "id_penjualan", nullable = false)
 //    private Integer idPenjualan;
@@ -24,16 +24,16 @@ public class Tblgenz2 implements Serializable {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+    @Column(name = "id_socialmedia", nullable = false)
+    private UUID idSocialMedia;
+
+    @Column(name = "url", nullable = false)
+    private String url;
+
+    @Column(name ="description", nullable = false)
+    private String description;
+
     @Column(name = "id_user", nullable = false)
     private UUID idUser;
-
-    @Column(name = "name_user", nullable = false)
-    private String name;
-
-    @Column(name ="usia_user", nullable = false)
-    private Integer usia;
-
-    @Column(name = "email_user", nullable = false)
-    private String email;
 
 }

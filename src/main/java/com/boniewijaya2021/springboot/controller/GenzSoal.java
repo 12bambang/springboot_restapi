@@ -1,6 +1,7 @@
 package com.boniewijaya2021.springboot.controller;
 
 import com.boniewijaya2021.springboot.pojo.GenzPojo;
+import com.boniewijaya2021.springboot.pojo.GenzPojo2;
 import com.boniewijaya2021.springboot.service.GenzPostService;
 import com.boniewijaya2021.springboot.service.GenzService;
 import com.boniewijaya2021.springboot.utility.MessageModel;
@@ -32,18 +33,17 @@ public class GenzSoal {
         return responseEntity;
     }
 
+    @GetMapping("/get/dataSoal2")
+    public ResponseEntity getDataSoal2( @RequestParam UUID idUser) {
+        ResponseEntity responseEntity = genzService.getDataSoal2(idUser);
+        return responseEntity;
+    }
+    @PostMapping("/post/dataSoal2")
+    private ResponseEntity<MessageModel> addDataSoal2(@RequestBody GenzPojo2 genzPojo2) {
+        ResponseEntity responseEntity = genzPostService.addDataSoal2(genzPojo2);
+        return responseEntity;
+    }
 }
 
-//@GetMapping("/get/dataPenjualanClass")
-//    public ResponseEntity getDataPenjualanDinamic( String namaSales, String namaBarang, Double harga){
-//        ResponseEntity responseEntity = salesService.getPenjualanClassrepo(namaSales, namaBarang, harga);
-//        return responseEntity;
-//    }
-//
-//
-//
-//    @PostMapping("/post/users")
-//    private ResponseEntity<MessageModel> addUsers(@RequestBody UsersPostPojo usersPostPojo) {
-//        ResponseEntity responseEntity = salesPostService.addDataUsers(usersPostPojo);
-//        return responseEntity;
-//    }
+
+
