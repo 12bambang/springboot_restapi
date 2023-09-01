@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class GenzPostService {
@@ -38,20 +36,27 @@ public class GenzPostService {
         MessageModel msg = new MessageModel();
 
         try{
+            //save user soal 1
             Tblgenz tblgenz = new Tblgenz();
             tblgenz.setName(genzPojo.getName());
             tblgenz.setAge(genzPojo.getAge());
             tblgenz.setCity(genzPojo.getCity());
             tblgenz.setConsumerType(genzPojo.getConsumerType());
-            Tblgenz saveTblgenz = genzRepository.save(tblgenz);
+            genzRepository.save(tblgenz).returnIduser();
 
-
-            for (GenzPojo.ItemPojo itemPojo: genzPojo.getSalesItem()) {
-                Tblitem tblitem = new Tblitem();
-                tblitem.setName(itemPojo.getName());
-                tblitem.setModels( String.join(",",itemPojo.getModels()));
-                tblitem.setIdUser(saveTblgenz.getIdUser());
+           //save salesitem 1
+            List<Tblitem> list = genzPojo.getSalesItem();
+            for (Tblitem map: list) {
+                Tblitem tblitem =new Tblitem();
+                tblitem.setName(genzPojo.getName());
+                tblitem.setModels( String.join(",",map.getModels()));
+                tblitem.setIdUser(map.getIdUser());
                 itemRepository.save(tblitem);
+
+//                Tblitem tblitem = new Tblitem()
+//                tblitem.setName(itemPojo.getName());
+//                tblitem.setModels( String.join(",",itemPojo.getModels()));
+//                tblitem.setIdUser(returnData.getIdUser());
             }
             msg.setStatus(true);
             msg.setMessage("Success");
@@ -72,34 +77,56 @@ public class GenzPostService {
         MessageModel msg = new MessageModel();
 
         try {
+            //save user soal 2
             Tblgenz2 tblgenz2 = new Tblgenz2();
             tblgenz2.setName(genzPojo2.getNama());
             tblgenz2.setUsia(genzPojo2.getUsia());
             tblgenz2.setEmail(genzPojo2.getEmail());
-            Tblgenz2 saveTblgenz2 = genzRepository2.save(tblgenz2);
+            genzRepository2.save(tblgenz2).returnIduser2();
+//            Tblgenz2 saveTblgenz2 = genzRepository2.save(tblgenz2);
 
 
-            for (GenzPojo2.ItemWebsite itemWebsite : genzPojo2.getWebsites()) {
+            // save list user soal 2
+//            List<Tblitem> list = genzPojo.getSalesItem();
+//            for (Tblitem map: list) {
+//                Tblitem tblitem =new Tblitem();
+//                tblitem.setName(genzPojo.getName());
+//                tblitem.setModels( String.join(",",map.getModels()));
+//                tblitem.setIdUser(map.getIdUser());
+//                itemRepository.save(tblitem);
+
+
+            List<Tblwebsite> listwebsite = genzPojo2.getWebsites();
+            for (Tblwebsite map: listwebsite) {
                 Tblwebsite tblwebsite = new Tblwebsite();
-//                tblitem.setName(itemPojo.getName());
-//                tblitem.setModels( String.join(",",itemPojo.getModels()));
-//                tblitem.setIdUser(saveTblgenz.getIdUser());
-//                itemRepository.save(tblitem)
-                tblwebsite.setUrl(itemWebsite.getUrl());
-                tblwebsite.setDescription(itemWebsite.getDescription());
-                tblwebsite.setIdUser(saveTblgenz2.getIdUser());
+                tblwebsite.setUrl(map.getUrl());
+                tblwebsite.setDescription(map.getDescription());
+                tblwebsite.setIdUser(map.getIdUser());
                 websiteRepository.save(tblwebsite);
+
+
+////                tblitem.setName(itemPojo.getName());
+////                tblitem.setModels( String.join(",",itemPojo.getModels()));
+////                tblitem.setIdUser(saveTblgenz.getIdUser());
+////                itemRepository.save(tblitem)
+//                tblwebsite.setUrl(itemWebsite.getUrl());
+//                tblwebsite.setDescription(itemWebsite.getDescription());
+//                tblwebsite.setIdUser(saveTblgenz2.getIdUser());
+
             }
-            for (GenzPojo2.ItemSocialMedia itemSocialMedia : genzPojo2.getSocialMedia()) {
+            List<Tblsocialmedia> listsocialmedia = genzPojo2.getSocialMedia();
+            for (Tblsocialmedia map : listsocialmedia) {
                 Tblsocialmedia tblsocialmedia = new Tblsocialmedia();
+                tblsocialmedia.setUrl(map.getUrl());
+                tblsocialmedia.setDescription(map.getDescription());
+                tblsocialmedia.setIdUser(map.getIdUser());
+                socialMediaRepository.save(tblsocialmedia);
+
 //                tblitem.setName(itemPojo.getName());
 //                tblitem.setModels( String.join(",",itemPojo.getModels()));
 //                tblitem.setIdUser(saveTblgenz.getIdUser());
 //                itemRepository.save(tblitem)
-                tblsocialmedia.setUrl(itemSocialMedia.getUrl());
-                tblsocialmedia.setDescription(itemSocialMedia.getDescription());
-                tblsocialmedia.setIdUser(saveTblgenz2.getIdUser());
-                socialMediaRepository.save(tblsocialmedia);
+
             }
             msg.setStatus(true);
             msg.setMessage("Success");

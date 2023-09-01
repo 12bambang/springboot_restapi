@@ -39,6 +39,9 @@ public class Tblgenz implements Serializable {
 
     @Column(name = "consumer_type", nullable = false)
     private String consumerType;
-    ;
+
+    public UUID returnIduser(){
+        return idUser;
+    }
 
 }

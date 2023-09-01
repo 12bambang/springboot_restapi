@@ -36,4 +36,8 @@ public class Tblgenz2 implements Serializable {
     @Column(name = "email_user", nullable = false)
     private String email;
 
+    public UUID returnIduser2(){
+        return idUser;
+    }
+
 }

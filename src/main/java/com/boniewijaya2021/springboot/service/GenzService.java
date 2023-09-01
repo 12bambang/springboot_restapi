@@ -38,11 +38,11 @@ public class GenzService {
 //        this.salesRepository = salesRepository;
 //    }
 
-    public ResponseEntity getDataSoal1(UUID idBarang) {
+    public ResponseEntity getDataSoal1(UUID idUser) {
 //        Map<String, Object> result = new HashMap<>();
         MessageModel msg = new MessageModel();
         try {
-            Tblgenz data = genzRepository.findById(idBarang).get();
+            Tblgenz data = genzRepository.findById(idUser).get();
             GenzPojo genzPojo = new GenzPojo();
             genzPojo.setName(data.getName());
             genzPojo.setAge(data.getAge());
@@ -50,12 +50,13 @@ public class GenzService {
             genzPojo.setConsumerType(data.getConsumerType());
 
             List<Tblitem> byIdUser = itemRepository.getByIdUser(data.getIdUser());
-            List<GenzPojo.ItemPojo> newList = new ArrayList<>();
-            for (Tblitem tblitem : byIdUser) {
-                GenzPojo.ItemPojo itemPojo = new GenzPojo.ItemPojo();
-                itemPojo.setName(tblitem.getName());
-                itemPojo.setModels(Arrays.asList(tblitem.getModels().split(",")));
-                newList.add(itemPojo);
+            List<Tblitem> newList = new ArrayList<>();
+            for (Tblitem getuser : byIdUser) {
+                Tblitem tblitem = new Tblitem();
+//                GenzPojo.ItemPojo itemPojo = new GenzPojo.ItemPojo();
+                tblitem.setName(tblitem.getName());
+                tblitem.setModels(Arrays.asList(getuser.getModels().split(",")));
+                newList.add(tblitem);
             }
             genzPojo.setSalesItem(newList);
 
